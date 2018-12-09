@@ -9,6 +9,10 @@ from evdev.eventio import EvdevError
 
 
 class EventIO(eventio.EventIO):
+    def close(self):
+        loop = asyncio.get_event_loop()
+        loop.remove_reader(self.fileno())
+
     def _do_when_readable(self, callback):
         loop = asyncio.get_event_loop()
 

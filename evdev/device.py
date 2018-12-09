@@ -279,6 +279,7 @@ class InputDevice(EventIO):
 
     def close(self):
         if self.fd > -1:
+            super().close()
             try:
                 os.close(self.fd)
             finally:
